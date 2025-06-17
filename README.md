@@ -43,6 +43,6 @@ Bu proje, ASP.NET Core 9.0 ile geliştirilmiş tam kapsamlı bir e-ticaret web u
 
 1. Reposu klonlayın:
    ```bash
-   git clone https://github.com/ferhatkymz/e-commerce-aspnetcore.git
-   cd e-commerce-aspnetcore
+   git clone https://github.com/ferhatkymz/E-Commerce-ASPNETCore.git
+   cd E-Commerce-ASPNETCore
    ```
