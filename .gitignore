@@ -1,0 +1,50 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Visual Studio Code
+.vscode/
+
+# Build
+bin/
+obj/
+
+# Paketler
+*.nupkg
+*.snupkg
+packages/
+
+# Log
+*.log
+
+# User secrets
+secrets.json
+
+
+
+# wwwroot
+wwwroot/
+
+# EF Migrations snapshot
+Migrations/
+
+# IDE'ler
+.idea/
+
+# Local DB
+*.db
+*.mdf
+*.ldf
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Node
+node_modules/
+
+# Publish
+publish/
