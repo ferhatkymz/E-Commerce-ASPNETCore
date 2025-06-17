@@ -1,6 +1,8 @@
 # 🛒 E-Ticaret Web Uygulaması
 
 Bu proje, ASP.NET Core 9.0 ile geliştirilmiş tam kapsamlı bir e-ticaret web uygulamasıdır. Kullanıcılar ürünleri inceleyebilir, sepete ekleyebilir, ödeme yapabilir ve sipariş oluşturabilir. Yönetici paneli sayesinde ürün, kategori, kullanıcı ve sipariş işlemleri kolayca yönetilebilir.
+Site Yayında gitmek için [Tıklayınız](https://ferhatkaymaz.com.tr/)
+
 
 ---
 
