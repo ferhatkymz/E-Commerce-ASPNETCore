@@ -1,0 +1,49 @@
+@model List<Product>
+
+@if (Model.Count > 0)
+{
+    <section class="mt-3">
+        <div class="container">
+            <h4 class="mb-3">Benzer Ürünler</h4>
+            <div class="row gy-3">
+
+                @foreach (var p in Model)
+                {
+
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <a asp-controller="Product" asp-action="Details" asp-route-id="@p.Id" class="d-block">
+                            <div class="card shadow">
+                                <div class="img-wrap">
+
+                                    <span class="fa fa-regular fa-heart"></span>
+                                    <img src="~/img/@p.img" alt="@p.Name" class="card-img-top">
+                                </div>
+
+                                <div class="border-top info-wrap">
+                                    <a asp-controller="Urun" asp-action="Details" asp-route-id="@p.Id"
+                                        class="title text-truncate">@p.Name</a>
+                                    <div class="price-wrap mb-3">
+                                        <span class="price-discount">@p.Price ₺</span>
+                                       @if (p.Discount > 0)
+                {
+                    <del class="price me-3" style="font-size: .9rem;">@p.Price ₺</del>
+                }
+                                    </div>
+                                    <form asp-controller="Card" asp-action="AddToCard" method="post">
+                                        <input type="hidden" name="productId" value="@p.Id">
+                                        <input type="hidden" name="amount" value="1">
+                                        <button type="submit" class="btn btn-light w-100">
+                                            <i class="fa fa-shopping-basket me-1"></i> Sepete Ekle
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                }
+
+            </div>
+        </div>
+    </section>
+}

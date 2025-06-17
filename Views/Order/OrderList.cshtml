@@ -1,0 +1,129 @@
+@model List<Order>
+
+@section bar
+{
+    <div class="bg-primary">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="breadcrumb-item active">Siparişler</li>
+            </ol>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-3">
+        @await Html.PartialAsync("Partials/Site/_AccountBar")
+    </div>
+    <div class="col-md-9">
+        <div class="card shadow">
+            <div class="card-header">
+                <h5 class="card-title">Siparişler</h5>
+            </div>
+            <div class="card-body">
+                @if (Model.Count > 0)
+                {
+                    <div class="accordion " id="orders">
+                        @foreach (var o in Model)
+                        {
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#order_@o.Id">
+                                        Sipariş No:#@o.Id
+                                    </button>
+                                </h2>
+                                <div id="order_@o.Id" class="accordion-collapse collapse" data-bs-parent="#orders">
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mb-0">
+                                            <tr>
+                                                <td colspan="2">
+                                                    Teslim Tarihi
+                                                </td>
+                                                <td colspan="3">
+                                                    @o.OrderDate
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    Ad Soyad
+                                                </td>
+                                                <td colspan="3">
+                                                    @o.FullName
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">
+                                                    Teslimat Adresi
+                                                </td>
+                                                <td colspan="3">
+                                                    @o.Adress / @o.City / @o.PostalCode / @o.Phone
+                                                </td>
+                                            </tr>
+                                            @foreach (var od in o.OrderDetails)
+                                            {
+                                                <tr>
+                                                    <td style="width: 80px;">
+                                                        <a asp-controller="Product" asp-action="Details" asp-route-id="@od.ProductId">
+                                                        <img src="~/img/@od.Product.img" class="img-fluid" alt="">
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                         <a asp-controller="Product" asp-action="Details" asp-route-id="@od.ProductId">
+                                                        @((od.Product.Name!.Length > 25
+? od.Product.Name.Substring(0, 22) + "..."
+                                                                                                    : od.Product.Name))
+                                        </a></td>
+                                        <td>@od.Price₺</td>
+                                        <td>@od.Amount <span>adet</span></td>
+                                        <td>@(od.Price* od.Amount)₺</td>
+                                    </tr>
+                                                                        }
+                                            <tr>
+                                                <td colspan="3"></td>
+                                                <td>Ara Toplam</td>
+                                                <td>@o.subTotal()₺</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"></td>
+                                                <td>Vergi(%20)</td>
+                                                <td>@(Math.Round((o.subTotal() * 0.2),2) )₺</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"></td>
+                                                <td>Kargo Ücreti</td>
+                                                <td>
+                                                    @if(o.subTotal()>25000)
+                                        {
+                                        <span>Ücretsiz</span>
+
+                                        }
+                                        else
+                                        {
+                                        <span>50 ₺</span>
+
+                                        }
+                                                    </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="3"></td>
+                                                <td>Toplam</td>
+                                                <td>@o.Total()₺</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning">Daha önce Sipariş vermediniz!</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

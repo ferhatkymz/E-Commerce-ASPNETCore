@@ -1,0 +1,8 @@
+@model List<Category>
+<nav class="nav nav-pills flex-column flex-nowrap overflow-auto slider_nav">
+    @foreach (Category c in Model)
+    {
+        <a href="/products/@c.URL" class="nav-link">@c.Name</a>
+    }
+
+</nav>

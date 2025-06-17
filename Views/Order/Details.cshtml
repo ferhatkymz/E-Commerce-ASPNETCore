@@ -1,0 +1,95 @@
+@{
+    Layout = "_AdminLayout";
+}
+@model Order
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title">Sipariş No:# @Model.Id</h5>
+                <div class="badge text-bg-primary">Onay Bekliyor</div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead class="table-secondary">
+                            <tr>
+                                <th>Id</th>
+                                <th style="width: 80px">Resim</th>
+                                <th>Ürün Adı</th>
+                                <th>Fiyat</th>
+                                <th>Adet</th>
+                                <th>Toplam</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var od in Model.OrderDetails)
+                            {
+
+                                <tr>
+                                    <td>@od.Id</td>
+                                    <td><img src="~/img/@od.Product.img" class="img-fluid" /></td>
+                                    <td>@od.Product.Name</td>
+                                    <td>@od.Price ₺</td>
+                                    <td>@od.Amount</td>
+                                    <td>@(od.Price* od.Amount) ₺</td>
+                                </tr>
+                            }
+                            <tr>
+                                <td colspan="4"></td>
+                                <td class="fw-bold">Ara Toplam</td>
+                                <td class="fw-bold">@Model.subTotal() ₺</td>
+                            </tr>
+                            <tr class="fw-bold">
+                                <td colspan="4"></td>
+                                <td>Vergi</td>
+                                <td>@(Model.subTotal() * 0.20) ₺</td>
+                            </tr>
+                            <tr class="fw-bold">
+                                <td colspan="4"></td>
+                                <td>Kargo</td>
+                                <td>@Model.cargoStatus()</td>
+                            </tr>
+                            <tr class="fw-bold">
+                                <td colspan="4"></td>
+                                <td>Toplam</td>
+                                <td>@Model.Total() ₺</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td style="width: 150px">Teslim Tarihi</td>
+                                <td>@Model.OrderDate</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 150px">Ad Soyad</td>
+                                <td>@Model.FullName</td>
+                            </tr>
+                            <tr>
+                                <td style="width: 150px">Teslimat Adresi</td>
+                                <td>
+                                    @Model.Adress/@Model.City/@Model.PostalCode/@Model.Phone
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 150px">Fatura Adresi</td>
+                                <td>
+                                    @Model.Adress/@Model.City/@Model.PostalCode/@Model.Phone
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 150px">Ödeme Bilgileri</td>
+                                <td>
+                                    1234-34**-****-**** (Yapı Kredi Bankası - 3 Taksit)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

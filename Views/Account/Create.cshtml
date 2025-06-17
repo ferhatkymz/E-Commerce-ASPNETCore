@@ -1,0 +1,61 @@
+@model AccountCreateModel
+
+@section bar
+{
+    <section class="bg-primary p-3">
+        <div class="container">
+            <nav>
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item">
+                        <a href="#">Anasayfa</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        Üye Ol
+                    </li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+}
+<section class="my-2">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-10 col-md-7">
+                <div class="card card-body">
+                    <form asp-controller="Account" asp-action="Create" method="post" novalidate>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label"></label>
+                            <input asp-for="FullName" class="form-control">
+                            <span asp-asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control">
+                            <span asp-asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Password" class="form-label"></label>
+                            <input asp-for="Password" class="form-control">
+                            <span asp-asp-validation-for="Password" class="text-danger"></span>
+                            <span class="text-danger">Şifreniz en az 8 karakter uzunluğunda 1 Büyük Harf 1 Küçük Harf ve
+                                bir özel karakter içermelidir.</span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="ConfirmPassword" class="form-label"></label>
+                            <input asp-for="ConfirmPassword" class="form-control">
+                            <span asp-asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Kaydı Oluştur</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    </div>
+    </div>
+</section>

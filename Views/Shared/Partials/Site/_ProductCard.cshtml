@@ -1,0 +1,30 @@
+@model Product
+</a>
+<div class="card shadow">
+    <a asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id" class="d-block">
+        <div class=" img-wrap">
+            @if (Model.Discount > 0)
+            {
+                <span class="badge bg-success">İndirim</span>
+            }
+            <img src="~/img/@Model.img" class="card-img-top">
+        </div>
+
+        <div class="border-top info-wrap">
+            <a href="#" class="float-end btn btn-light">
+                <i class="fa-regular fa-heart"></i>
+            </a>
+            <a asp-controller="Product" asp-action="Details" asp-route-id="@Model.Id"
+                class="title text-truncate">@Model.Name</a>
+            <div class="price-wrap">
+                @if (Model.Discount > 0)
+                {
+                    <del class="price me-3" style="font-size: .9rem;">@Model.Price ₺</del>
+                }
+                <span class="price-discount text-danger fw-bold" style="font-size: 1.2rem;">@(Model.Price - (Model.Price
+                                        * (Model.Discount) / 100))
+                    ₺</span>
+            </div>
+        </div>
+    </a>
+</div>

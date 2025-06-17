@@ -1,0 +1,71 @@
+@model SliderCreateModel
+@{
+    Layout = "_AdminLayout";
+}
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header py-1 d-flex justify-content-between align-items-center">
+                <h5 class="card-title">Slider Ekle</h5>
+                <a asp-action="Index" class="btn btn-sm btn-primary">
+                    <i class="fa-solid fa-list"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <form asp-action="Create" method="post" enctype="multipart/form-data">
+                    <div class="row mb-3">
+                        <label asp-for="Title" class="col-sm-2 col-form-label">Başlık</label>
+                        <div class="col-sm-10">
+                            <input asp-for="Title" class="form-control" />
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="Description" class="col-sm-2 col-form-label">Aciklama</label>
+                        <div class="col-sm-10">
+                            <textarea asp-for="Description" class="form-control"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="ImgFile" class="col-sm-2 col-form-label">Resim</label>
+                        <div class="col-sm-10">
+                            <input asp-for="ImgFile" class="form-control" />
+                            <span asp-validation-for="ImgFile" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="Index" class="col-sm-2 col-form-label">Index</label>
+                        <div class="col-sm-10">
+                            <input asp-for="Index" class="form-control" />
+                            <span asp-validation-for="Index" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label asp-for="isActive" class="col-sm-2 col-form-label">Aktif</label>
+                        <div class="col-sm-10">
+                            <input asp-for="isActive" class="form-check-input" />
+                            <span asp-validation-for="isActive" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-10 offset-sm-2">
+                            <button type="submit" class="btn btn-primary">
+                                Kaydet
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}

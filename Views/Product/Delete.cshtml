@@ -1,0 +1,19 @@
+@model ProductDeleteModel
+@{
+    Layout = "_AdminLayout";
+}
+
+<div id="center-container">
+
+    <div class="text-center">
+        <p class="card-text ">@Model.Id Numaralı Id sahip @Model.Name isimli ürünü Silmek istediğinize Emin misiniz?
+        </p>
+        <form asp-action="DeleteConfirm" method="post">
+            <input type="hidden" name="id" value="@Model.Id">
+            <div class="d-grid gap-2 d-md-block">
+                <button type="submit" class="btn btn-success">Evet</button>
+                <a asp-asp-controller="Product" asp-action="Index" class="btn btn-danger">Hayır</a>
+            </div>
+        </form>
+    </div>
+</div>

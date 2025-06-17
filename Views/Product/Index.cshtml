@@ -1,0 +1,113 @@
+@model List<ProductGetModel>
+@{
+    Layout = "_AdminLayout";
+
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card shadow">
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="card-title">Ürünler</h5>
+                <a asp-controller="Product" asp-action="Create" type="button" class="btn btn-primary btn-sm">
+                    <i class="fa-solid fa-plus"></i>
+                </a>
+            </div>
+            <div class="card-body">
+                <div class="mb-2">
+                    <form asp-action="Index" method="get">
+                        <div class="row">
+                            <div class="col-sm-3 col-md-4">
+                                <select asp-items="ViewBag.Categories" class="form-select" name="kategori">
+                                    <option value="" selected="">Hepsi</option>
+                                </select>
+                            </div>
+                            <div class="col-sm-9 col-md-7">
+                                <div class="input-group">
+                                    <button type="submit" class="btn btn-warning input-group-text">
+                                        <i class="fa-solid fa-magnifying-glass"></i> Filtrele
+                                    </button>
+                                    <input type="text" name="q" class="form-control" value="@ViewData["q"]"
+                                        placeholder="Aranacak ürün adı">
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+                @if (Model.Count > 0)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead class="table-secondary">
+                                <tr>
+                                    <th style="width: 20px">Id</th>
+                                    <th style="width: 80px">Resim</th>
+                                    <th>Ürün Adı</th>
+                                    <th>Fiyat</th>
+                                    <th>İndirim(%)</th>
+                                    <th>Aktif</th>
+                                    <th>Ana Sayfa</th>
+                                    <th>Kategori</th>
+                                    <th style="width: 90px"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (ProductGetModel p in Model)
+                                {
+                                    <tr>
+                                        <td>@p.Id</td>
+                                        <td>
+                                            <img src="~/img/@p.img" class="img-fluid" alt="" />
+                                        </td>
+                                        <td>@p.Name</td>
+                                        <td>@p.Price₺</td>
+                                        <td>@p.Discount</td>
+                                        <td>
+                                            @if (p.isActive)
+                                            {
+                                                <i class="fa-solid fa-circle-check text-success"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa-solid fa-circle-xmark text-danger"></i>
+                                            }
+
+                                        </td>
+                                        <td>
+                                            @if (p.isHome)
+                                            {
+                                                <i class="fa-solid fa-circle-check text-success"></i>
+                                            }
+                                            else
+                                            {
+                                                <i class="fa-solid fa-circle-xmark text-danger"></i>
+                                            }
+                                        </td>
+                                        <td>@p.CategoryName</td>
+                                        <td>
+                                            <div class="d-grid gap-1">
+                                                <a asp-controller="Product" asp-action="Edit" asp-route-id="@p.Id"
+                                                    class="btn btn-primary btn-sm">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </a>
+                                                <a asp-asp-controller="Product" asp-action="Delete" asp-route-id="@p.Id"
+                                                    class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning">Bu Kiritere göre ürün bulunamadı...</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

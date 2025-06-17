@@ -1,0 +1,57 @@
+@model List<CategoryGetModel>
+@{
+    Layout = "_AdminLayout";
+}
+<div class="card shadow">
+    <div class="card-header d-flex py-1 d-flex justify-content-between align-items-center">
+        <h5 class="card-title">Kategoriler</h5>
+        <a asp-controller="Category" asp-action="create" class="btn btn-primary btn-sm">
+            <i class="fa-solid fa-plus"></i>
+        </a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead class="table-secondary">
+
+
+
+                    <tr>
+                        <th>Id</th>
+                        <th>Kategori Adı</th>
+                        <th>Url</th>
+                        <th>Ürün Sayısı</th>
+                        <th style="width: 125px"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model)
+                    {
+                        <tr>
+                            <td>@c.Id</td>
+                            <td>@c.Name</td>
+                            <td>@c.Url</td>
+                            <td>@c.Count</td>
+                            <td>
+                                <a asp-controller="Category" asp-action="Edit" asp-route-id="@c.Id"
+                                    class="btn btn-primary btn-sm">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                                <a asp-controller="Product" asp-action="Index" asp-route-kategori="@c.Id"
+                                    class="btn btn-primary btn-sm">
+                                    <i class="fa-solid fa-right-long"></i>
+                                </a>
+                                @if (@c.Count == 0)
+                                {
+                                    <a asp-asp-controller="Category" asp-action="Delete" asp-route-id="@c.Id"
+                                        class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+                                }
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

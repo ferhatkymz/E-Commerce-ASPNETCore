@@ -1,0 +1,41 @@
+﻿@model List<Product>
+@section bar
+{
+    @await Component.InvokeAsync("Navbar")
+
+}
+<section class="mt-3">
+    <div class="container">
+        <div class="alert alert-warning">Siteyi Tamamen Kendimi geliştirmek amacıyla tasarladım ürünler <a
+                href="https://www.trendyol.com/" target="_blank">Trendyol</a>'dan alınmıştır detaylı bilgi için <a
+                href="https://www.linkedin.com/in/ferhat-kaymaz-7b0242297/" target="_blank">Linkedin</a> hesabıma
+            bakabilirsiniz. </div>
+        <div class="card">
+            <div class="row p-1 p-lg-2 gx-2">
+                <div class="col-lg-3 d-none d-lg-block">
+                    <!-- menu -->
+                    @await Html.PartialAsync("Partials/Site//_Menu", ViewData["Categories"])
+                </div>
+                <div class="col-lg-9">
+                    <!-- slider -->
+                    @await Component.InvokeAsync("Slider")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mt-3">
+    <div class="container">
+        <h3 class="h4 mb-1 mb-lg-3">Son Eklenenler</h3>
+
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-2">
+            @foreach (Product p in Model)
+            {
+                <div class="col">
+                    @await Html.PartialAsync("Partials/Site/_ProductCard", p)
+                </div>
+            }
+        </div>
+    </div>
+</section>

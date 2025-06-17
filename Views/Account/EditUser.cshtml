@@ -1,0 +1,62 @@
+@model AccountEditUserModel
+
+@section bar
+{
+
+    <div class="bg-primary">
+        <div class="container">
+            <div class="breadcrumb ">
+                <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li class="breadcrumb-item active">Kullanıcı Bilgileri</li>
+            </div>
+        </div>
+    </div>
+
+}
+<div class="row">
+    <div class="col-sm-3">
+        @await Html.PartialAsync("Partials/Site/_AccountBar")
+    </div>
+    <div class="col-sm-9 ">
+        <div class="card shadow">
+            <div class="card-header">
+                <h5 class="card-title">Kullanıcı Bilgileri</h5>
+            </div>
+            <div class="card-body">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <form asp-action="EditUser" method="post">
+                    <div class="row mb-3">
+                        <label asp-for="FullName" class="form-label col-sm-2"></label>
+                        <div class="col-sm-10">
+                            <input asp-for="FullName" class="form-control">
+                            <span asp-validation-for="FullName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label asp-for="Email" class="form-label col-sm-2"></label>
+                        <div class="col-sm-10">
+                            <input asp-for="Email" class="form-control">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-sm-10 offset-sm-2">
+                            <button type="submit" class="btn btn-primary">Kaydet</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+
+@section script
+{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
